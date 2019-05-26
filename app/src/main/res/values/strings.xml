@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">5GaleryGlide</string>
+    <string name="album_path">/storage/emulated/0/DCIM/CardboardCamera/</string>
+</resources>
