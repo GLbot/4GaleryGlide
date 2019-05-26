@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,14 +27,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /* проверяем права на доступ к хранилищу */
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
-        } else {
-            showImages();
+        // проверяем права на доступ
+
+        //Log.d("== permit_before", "" + checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE));
+        //Log.d("== permit_before", "" + PackageManager.PERMISSION_GRANTED);
+
+
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
         }
+
+        //Log.d("== permit", "" + checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE));
+        //Log.d("== permit", "" + PackageManager.PERMISSION_GRANTED);
+
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            showImages();
+        } else finish();
+
     }
 
     /* альбом с фотографиями */
