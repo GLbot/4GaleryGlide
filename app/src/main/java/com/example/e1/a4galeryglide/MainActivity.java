@@ -52,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
         // photos = ViewPhoto.getViewPhotos(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "");
         photos = ViewPhoto.getViewPhotos(albumPath);
 
+        // for debug only
+        photos.add (new ViewPhoto("file:///android_asset/mountain.jpg", "mountain.jpg"));
+        photos.add (new ViewPhoto("file:///android_asset/IMG_20151204_155452.vr_.jpg", "IMG_20151204_155452.vr_.jpg"));
+
         ImageGalleryAdapter adapter = new ImageGalleryAdapter(this, photos);
         recyclerView.setAdapter(adapter);
     }
